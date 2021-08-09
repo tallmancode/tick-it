@@ -1,3 +1,10 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+frontend-base:
+    path: /
+    controller: App\Controller\AppController::frontend
+    methods: GET|HEAD
+frontend:
+    path: /{path}
+    controller: App\Controller\AppController::frontend
+    methods: GET|HEAD
+    requirements:
+        path: login

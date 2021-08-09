@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{%- block head -%}
+
+{% endblock %}
+{%- block css -%}
+    {{ encore_entry_link_tags('styles') }}
+    {{ encore_entry_link_tags('frontend') }}
+{%- endblock css -%}
+
+{% block body %}
+    <body>
+    <div id="app">
+        <frontend-base></frontend-base>
+    </div>
+    {{ encore_entry_script_tags('frontend') }}
+    {%- block javascriptAppended -%}{%- endblock javascriptAppended -%}
+    </body>
+{% endblock %}

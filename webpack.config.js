@@ -43,6 +43,10 @@ Encore
         config.useBuiltIns = 'usage';
         config.corejs = 3;
     })
+    // .configureDevServerOptions(options => {
+    //     // in older Webpack Dev Server versions, use this option instead:
+    //     options.allowedHosts = false;
+    // })
 
     // enables Sass/SCSS support
     .enableSassLoader()

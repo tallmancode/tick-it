@@ -1,19 +1,24 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
-
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A example of a support ticket system">
+    <meta name="author" content="TallmanCode">
+    <title>{% block title %}Tick-It - Finding support{% endblock %}</title>
+    {%- block head -%}
+    {%- endblock head -%}
+    {%- block css -%}{%- endblock css -%}
+    {%- block cssAppended -%}{%- endblock cssAppended -%}
+</head>
+{% block body %}
     <body>
-        {% block body %}{% endblock %}
+        <div id="app">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    {%- block javascript -%}{%- endblock javascript -%}
+    {%- block javascriptAppended -%}{%- endblock javascriptAppended -%}
     </body>
+{% endblock %}
 </html>
