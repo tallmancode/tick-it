@@ -23,6 +23,12 @@ export default {
 .container {
     max-width: 960px;
 }
+main{
+    min-height: calc(100vh - (55px + 288px));
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
 .flex-equal > * {
     flex: 1;
 }

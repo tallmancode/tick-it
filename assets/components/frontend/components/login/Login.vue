@@ -1,7 +1,7 @@
 <template>
     <form class="form-signin">
         <img class="mb-4 logo" :src="require('/assets/media/logo/tick-it-logo-blue.svg')" alt="">
-        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <h1 class="h3 mb-3 fw-normal text-center">Please sign in</h1>
 
         <div class="form-floating">
             <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
@@ -18,7 +18,7 @@
             </label>
         </div>
         <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-muted">&copy;TallmanCode 2021</p>
+        <p class="mt-3 mb-3 text-muted">&copy;TallmanCode 2021</p>
     </form>
 </template>
 
@@ -34,10 +34,7 @@ export default {
     max-width: 330px;
     padding: 15px;
     margin: auto;
-    min-height: calc(100vh - (54px + 228px));
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
+
 
     .logo{
 
