@@ -43,7 +43,7 @@ final class UserFactory extends ModelFactory
         return [
             'email' => self::faker()->text(),
             'roles' => ['ROLE_USER'],
-            'password' => self::faker()->text(),
+            'plainPassword' => 'password',
             'name' => self::faker()->firstName(),
             'surname' => self::faker()->lastName(),
         ];
@@ -53,7 +53,7 @@ final class UserFactory extends ModelFactory
     {
         return $this
             ->afterInstantiate(function(User $user) {
-                $user->setPassword($this->passwordHasher->hashPassword($user, $user->getPassword()));
+                $user->setPassword($this->passwordHasher->hashPassword($user, $user->getPlainPassword()));
             });
     }
 
