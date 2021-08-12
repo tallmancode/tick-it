@@ -9,11 +9,11 @@ import { createApp } from 'vue'
 const backend = createApp({})
 
 //Router
-import Router from './components/frontend/vue-router/router'
+import Router from './components/backend/vue-router/router'
 backend.use(Router)
 
 //Components
 backend.component('backend-base', require('./components/backend/BackendBase').default)
 
 //Mount
-backend.mount('#app')
+backend.mount('#wrapper')
