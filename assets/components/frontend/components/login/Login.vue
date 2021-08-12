@@ -29,7 +29,7 @@ export default {
         return{
             formData: {
                 email: null,
-                password: null
+                password: null,
             }
         }
     },
@@ -38,7 +38,9 @@ export default {
             axios
                 .post('/login', this.formData)
                 .then((resp) => {
-
+                    if (resp.status === 204 && resp.headers.location) {
+                        window.location.href = resp.headers.location;
+                    }
                 })
                 .catch((err) => {
 
