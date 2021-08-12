@@ -52,7 +52,7 @@ class SecurityController extends AbstractController
 
         if($user instanceof User) {
             return new Response(null, 201, [
-                //'Location' => $this->generateUrl('backend-base')
+                'Location' => $this->generateUrl('backend', ['path' => 'dashboard'])
             ]);
         }
     }
@@ -64,11 +64,11 @@ class SecurityController extends AbstractController
     {
         if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->json([
-                'error' => 'Invalid login request: check that the Content-Type header is "application/json".'
+                'error' => 'Invalid login request.'
             ], 400);
         }
         return new Response(null, 204, [
-            //'Location' => $this->generateUrl('backend-base')
+            'Location' => $this->generateUrl('backend', ['path' => 'dashboard'])
         ]);
     }
 

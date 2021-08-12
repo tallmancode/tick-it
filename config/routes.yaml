@@ -8,3 +8,9 @@ frontend:
     methods: GET|HEAD
     requirements:
         path: login
+backend:
+    path: /{path}
+    controller: App\Controller\AppController::backend
+    methods: GET|HEAD
+    requirements:
+        path: "^(?!login).+"
