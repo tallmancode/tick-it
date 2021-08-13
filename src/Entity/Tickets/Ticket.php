@@ -4,13 +4,16 @@ namespace App\Entity\Tickets;
 
 use App\Entity\Users\User;
 use App\Repository\Tickets\TicketRepository;
+use App\Traits\TimestampTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=TicketRepository::class)
  */
 class Ticket
 {
+    use TimestampTrait;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -21,6 +24,7 @@ class Ticket
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tickets")
      * @ORM\JoinColumn(nullable=false)
+     * @Gedmo\Blameable(on="create")
      */
     private $user;
 
