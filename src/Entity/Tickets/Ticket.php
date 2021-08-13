@@ -2,14 +2,21 @@
 
 namespace App\Entity\Tickets;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Entity\Users\User;
 use App\Repository\Tickets\TicketRepository;
 use App\Traits\TimestampTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=TicketRepository::class)
+ * @ApiResource(
+ *     normalizationContext={"groups"={"ticket:read"}},
+ *     denormalizationContext={"groups"={"ticket:write"}},
+ * )
  */
 class Ticket
 {
@@ -18,6 +25,7 @@ class Ticket
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"ticket:read", "ticket:write"})
      */
     private $id;
 
@@ -25,28 +33,34 @@ class Ticket
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tickets")
      * @ORM\JoinColumn(nullable=false)
      * @Gedmo\Blameable(on="create")
+     * @Groups({"ticket:read"})
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity=TicketType::class, inversedBy="tickets")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"ticket:read", "ticket:write"})
      */
     private $ticketType;
 
     /**
      * @ORM\ManyToOne(targetEntity=TicketStatus::class, inversedBy="tickets")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"ticket:read", "ticket:write"})
      */
     private $ticketStatus;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"ticket:read", "ticket:write"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"ticket:read", "ticket:write"})
+     * @Assert\NotBlank(message="Please enter your email address")
      */
     private $title;
 
