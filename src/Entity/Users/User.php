@@ -3,8 +3,11 @@
 namespace App\Entity\Users;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Entity\Tickets\Ticket;
 use App\Repository\Users\UserRepository;
 use App\ApiActions\GetMeAction;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -85,6 +88,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @Groups({"user:read", "user:write"})
      */
     private $surname;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Ticket::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $tickets;
+
+    public function __construct()
+    {
+        $this->tickets = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -213,6 +226,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPlainPassword(string $plainPassword): self
     {
         $this->plainPassword = $plainPassword;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Ticket[]
+     */
+    public function getTickets(): Collection
+    {
+        return $this->tickets;
+    }
+
+    public function addTicket(Ticket $ticket): self
+    {
+        if (!$this->tickets->contains($ticket)) {
+            $this->tickets[] = $ticket;
+            $ticket->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTicket(Ticket $ticket): self
+    {
+        if ($this->tickets->removeElement($ticket)) {
+            // set the owning side to null (unless already changed)
+            if ($ticket->getUser() === $this) {
+                $ticket->setUser(null);
+            }
+        }
 
         return $this;
     }

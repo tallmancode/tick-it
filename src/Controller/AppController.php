@@ -35,6 +35,7 @@ class AppController extends AbstractController
             return $this->redirect($this->generateUrl('frontend-base'));
         }
 
+
         //render backend template
         return $this->render('backend/backendBase.html.twig', [
             'controller_name' => 'AppController',

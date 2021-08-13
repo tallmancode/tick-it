@@ -13,16 +13,18 @@
         </div>
         <!-- End of Main Content -->
     </div>
+    <GlobalLoading></GlobalLoading>
 </template>
 
 <script>
 import Sidebar from "./components/global/sidebar/Sidebar";
 import TopNav from "./components/global/topnav/TopNav";
+import GlobalLoading from "./components/global/loading/GlobalLoading";
 import {mapGetters} from "vuex";
 
 export default {
     name: "BackendBase",
-    components: {Sidebar, TopNav},
+    components: {Sidebar, TopNav, GlobalLoading},
     computed: {
         ...mapGetters('Auth', ['hasRole'])
     }

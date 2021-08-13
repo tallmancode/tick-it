@@ -13,10 +13,21 @@ export default {
         user (state) {
             return state.user;
         },
+        usersName (state) {
+            console
+            return state.user.name+' '+state.user.surname;
+        },
         hasRole: (state) => (role) => {
             console.log(state.user)
             if (state.user.length !== 0 && state.user) {
-                return state.user.roles.includes(role);
+                if(typeof role === 'string'){
+                    return state.user.roles.includes(role);
+                } else if (typeof role === 'object'){
+
+                } else {
+                    return false
+                }
+
             }
             return false;
         },
