@@ -67,8 +67,15 @@ class SecurityController extends AbstractController
                 'error' => 'Invalid login request.'
             ], 400);
         }
+
+        $redirectPath = ['path' => 'support-center'];
+
+        if($this->isGranted('ROLE_SUPPORT')){
+            $redirectPath = ['path' => 'dashboard'];
+        }
+
         return new Response(null, 204, [
-            'Location' => $this->generateUrl('backend', ['path' => 'dashboard'])
+            'Location' => $this->generateUrl('backend', $redirectPath)
         ]);
     }
 

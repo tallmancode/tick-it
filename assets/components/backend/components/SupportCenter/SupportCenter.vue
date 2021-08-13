@@ -1,12 +1,10 @@
 <template>
-    <page-template>
 
-    </page-template>
 </template>
 
 <script>
 export default {
-    name: "Dashboard"
+    name: "SupportCenter"
 }
 </script>
 

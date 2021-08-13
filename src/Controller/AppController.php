@@ -12,7 +12,14 @@ class AppController extends AbstractController
     {
         //redirect user to backend if authenticated
         if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
-            return $this->redirect($this->generateUrl('backend', ['path' => 'dashboard']));
+
+            $redirectPath = ['path' => 'support-center'];
+
+            if($this->isGranted('ROLE_SUPPORT')){
+                $redirectPath = ['path' => 'dashboard'];
+            }
+
+            return $this->redirect($this->generateUrl('backend', $redirectPath));
         }
 
         //render frontend template
@@ -31,6 +38,7 @@ class AppController extends AbstractController
         //render backend template
         return $this->render('backend/backendBase.html.twig', [
             'controller_name' => 'AppController',
+            'user' => $this->getUser()
         ]);
     }
 }

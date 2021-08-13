@@ -2,16 +2,38 @@
 
 namespace App\Entity\Users;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\Users\UserRepository;
+use App\ApiActions\GetMeAction;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity("email", message="That email address is already in use")
+ * @ApiResource(
+ *     normalizationContext={"groups"={"user:read"}},
+ *     denormalizationContext={"groups"={"user:write"}},
+ *     itemOperations={
+ *     "get"={
+ *             "requirements"={"id"="\d+"},
+ *             "security"="is_granted('ROLE_ADMIN')"
+ *         },
+ *         "get_me"={
+ *             "method"="GET",
+ *             "path"="/user/me",
+ *             "controller"=GetMeAction::class,
+ *             "openapi_context"={
+ *                 "parameters"={}
+ *             },
+ *             "read"=false
+ *         },
+ *     }
+ * )
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -19,6 +41,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"user:read", "user:write"})
      */
     private $id;
 
@@ -26,11 +49,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=180, unique=true)
      * @Assert\NotBlank(message="Please enter your email address")
      * @Assert\Email(message="Please enter a valid email address")
+     * @Groups({"user:read", "user:write"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
+     * @Groups({"user:read", "user:write"})
      */
     private $roles = [];
 
@@ -51,11 +76,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"user:read", "user:write"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"user:read", "user:write"})
      */
     private $surname;
 

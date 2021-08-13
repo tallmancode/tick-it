@@ -9,7 +9,7 @@
 
 {% block body %}
     <body>
-    <div id="wrapper">
+    <div id="wrapper" data-roles="{{ user.roles[0] }}">
         <backend-base></backend-base>
     </div>
     {{ encore_entry_script_tags('backend') }}

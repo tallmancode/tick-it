@@ -1,6 +1,6 @@
 security:
     # https://symfony.com/doc/current/security/experimental_authenticators.html
-    enable_authenticator_manager: true
+    #enable_authenticator_manager: false
     password_hashers:
         App\Entity\Users\User:
             algorithm: auto
@@ -18,11 +18,14 @@ security:
             security: false
         main:
             lazy: true
+            anonymous: true
             provider: app_user_provider
             json_login:
                 check_path: app_login
                 username_path: email
                 password_path: password
+            logout:
+                path: app_logout
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
 
