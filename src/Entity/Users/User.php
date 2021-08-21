@@ -3,6 +3,7 @@
 namespace App\Entity\Users;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Entity\Tickets\Reply;
 use App\Entity\Tickets\Ticket;
 use App\Repository\Users\UserRepository;
 use App\ApiActions\GetMeAction;
@@ -79,13 +80,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user:read", "user:write"})
+     * @Groups({"user:read", "user:write", "ticket:read"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user:read", "user:write"})
+     * @Groups({"user:read", "user:write", "ticket:read"})
      */
     private $surname;
 
@@ -94,9 +95,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $tickets;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Reply::class, mappedBy="user")
+     */
+    private $replies;
+
     public function __construct()
     {
         $this->tickets = new ArrayCollection();
+        $this->replies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -254,6 +261,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($ticket->getUser() === $this) {
                 $ticket->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reply[]
+     */
+    public function getReplies(): Collection
+    {
+        return $this->replies;
+    }
+
+    public function addReply(Reply $reply): self
+    {
+        if (!$this->replies->contains($reply)) {
+            $this->replies[] = $reply;
+            $reply->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReply(Reply $reply): self
+    {
+        if ($this->replies->removeElement($reply)) {
+            // set the owning side to null (unless already changed)
+            if ($reply->getUser() === $this) {
+                $reply->setUser(null);
             }
         }
 

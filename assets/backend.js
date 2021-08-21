@@ -49,10 +49,6 @@ const backend = createApp({
                 return Promise.reject(error);
             }
         );
-
-        this.$nextTick().then(() => {
-            store.dispatch('Auth/me', null, {root: true})
-        })
     }
 })
 
@@ -64,9 +60,21 @@ backend.use(Router)
 backend.component('backend-base', require('./components/backend/BackendBase').default)
 backend.component('page-template', require('./components/backend/components/global/page/PageTemplate').default)
 backend.component('page-header', require('./components/backend/components/global/page/PageHeader').default)
+backend.component('card', require('./components/backend/components/global/cards/Card').default)
+
 //Vuex
 import store from "./vuex/store";
 backend.use(store)
+
+//Form Components
+backend.component('multi-select', require('@vueform/multiselect').default)
+
+//Vue Mesa Tables
+import VueMesa from "./vue-plugins/VueMesas/index";
+backend.use(VueMesa, {})
+
+import moment from "moment";
+backend.config.globalProperties.$moment = moment;
 
 //Mount
 backend.mount('#wrapper')

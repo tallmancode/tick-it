@@ -2,6 +2,7 @@ import { createRouter, createWebHistory  } from 'vue-router';
 
 //Support agent specific routes
 import Dashboard from "../components/dashboard/Dashboard";
+import TicketsOverview from "../components/tickets/tickets-overview/TicketsOverview";
 
 //User specific routes
 import SupportCenter from "../components/SupportCenter/SupportCenter";
@@ -16,6 +17,7 @@ const router = createRouter({
     },
     routes: [
         { path: '/dashboard', component: Dashboard, name: 'Dashboard', meta: { title: 'Dashboard'} },
+        { path: '/tickets-overview', component: TicketsOverview, name: 'TicketsOverview', meta: { title: 'Tickets Overview'} },
         { path: '/support-center', component: SupportCenter, name: 'SupportCenter', meta: { title: 'Support Center'} },
     ]
 })

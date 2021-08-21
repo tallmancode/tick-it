@@ -4,7 +4,6 @@
 
 @import '~@fortawesome/fontawesome-free/css/all.css';
 
-
 //Custom Styles and Bootstrap Overrides
 @import "components/buttons";
 
@@ -22,10 +21,101 @@
 @import "error.scss";
 @import "footer.scss";
 
+@import "~@vueform/multiselect/themes/default";
+
 //Vue Fade transition
 .fade-enter-active, .fade-leave-active {
     transition: opacity 0.5s ease-in-out;
 }
+
 .fade-enter-from, .fade-leave-to {
     opacity: 0;
+}
+
+//Vue Slide transition
+.slide-enter-from {
+    transform: translateX(100%);
+}
+
+.slide-enter-to {
+    transform: translateX(0);
+}
+
+.slide-leave {
+    transform: translateX(0);
+}
+
+.slide-leave-to {
+    transform: translateX(100%);
+}
+
+.slide-enter-active,
+.slide-leave-active {
+    transition: all 0.5s ease-in-out;
+}
+
+//tables
+.vue-mesa {
+   table > thead th {
+        &.sorting {
+            padding-right: 30px;
+            position: relative;
+            cursor: pointer;
+            &:before, &:after{
+                font-family: 'Font Awesome 5 Free';
+                font-weight: 900;
+                position: absolute;
+                display: block;
+                bottom: .9em;
+            }
+            &:before {
+                right: 1em;
+                content: "↑";
+            }
+            &:after {
+                right: .5em;
+                content: "↓";
+            }
+        }
+    }
+}
+
+//Tables
+.vue-table{
+    &__pagination{
+        display: flex;
+        list-style: none;
+        border-radius: .25rem;
+        padding: 0;
+        li{
+            a{
+                border: none;
+                position: relative;
+                display: block;
+                padding: .5rem .75rem;
+                line-height: 1.25;
+                color: #000;
+                background-color: transparent;
+                cursor: pointer;
+                margin-left: -1px;
+                text-decoration: none;
+                transition: background-color 0.3s ease-in-out;
+                &.active{
+                    color: #fff;
+                    background-color: $primary;
+                    cursor: not-allowed;
+                }
+                &.active, &.disabled{
+                    cursor: not-allowed;
+                }
+                &.disabled{
+                    opacity: 0.5;
+                }
+                &:hover:not(.disabled){
+                    color: #fff;
+                    background-color: $gray-400;
+                }
+            }
+        }
+    }
 }

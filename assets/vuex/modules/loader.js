@@ -26,11 +26,9 @@ export default {
             state.loading = false;
         },
         pending(state) {
-            console.log('bob')
             if (state.requestsPending === 0) {
                 this.commit("Loader/show");
             }
-
             state.requestsPending++;
         },
         done(state) {

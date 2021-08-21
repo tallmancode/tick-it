@@ -27,10 +27,10 @@
         </div>
 
         <li class="nav-item">
-            <a class="nav-link" href="charts.html">
+            <router-link :to="{name: 'TicketsOverview'}" class="nav-link">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Tickets Overview</span>
-            </a>
+            </router-link>>
         </li>
 
         <li class="nav-item">

@@ -1,0 +1,111 @@
+@import "variables";
+
+.vue-table{
+    &__header{
+        .vue-table{
+            &__filters{
+                padding-left: 0;
+                list-style: none;
+                display: flex;
+            }
+            &__filter-actions{
+                display: flex;
+                justify-content: flex-end;
+                button{
+                    margin-right: 10px;
+                    &:last-child{
+                        margin-right: 0;
+                    }
+                }
+            }
+            &__filterToggle{
+                margin-bottom: 10px;
+                a{
+                    color: #9eaacc;
+                    display: flex;
+                    justify-content: flex-end;
+                    transition: ease-in-out 0.3s;
+                    &:hover{
+                        color: #268ab3;
+                    }
+                    i{
+                        margin-right: 10px;
+                    }
+                }
+            }
+            &__filterCollapse{
+                padding: 0 10px;
+                max-height: 0;
+                overflow: hidden;
+                transition: 0.3s ease-in-out;
+            }
+        }
+    }
+
+    table{
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        thead{
+            tr{
+                th{
+                    color: $vue-table-header-colour;
+                    background-color: $vue-table-header-bg-colour;
+                    vertical-align: $vue-table-header-v-align;
+                    border-bottom: $vue-table-header-border-bottom;
+                    border-top: $vue-table-header-border-top;
+                    border-color: $vue-table-header-border-colour;
+                    padding: $vue-table-header-cell-padding;
+                }
+            }
+        }
+        tbody{
+            tr{
+                td{
+                    vertical-align: middle;
+                    padding: .75rem;
+                    border-top: 1px solid;
+                    border-top-color: #d8dbe0;
+                }
+            }
+        }
+    }
+    &__pagination{
+        display: flex;
+        list-style: none;
+        border-radius: .25rem;
+        padding: 0;
+        li{
+            a{
+                //border-top-left-radius: .25rem;
+                //border-bottom-left-radius: .25rem;
+                border: $vue-table-pagination-border;
+                border-color: $vue-table-pagination-border-colour;
+                position: relative;
+                display: block;
+                padding: .5rem .75rem;
+                line-height: 1.25;
+
+                color: $vue-table-pagination-colour;
+                background-color: $vue-table-pagination-bg-colour;
+                cursor: pointer;
+                margin-left: -1px;
+                &.active{
+                    color: $vue-table-pagination-bg-colour;
+                    background-color: $vue-table-pagination-colour;
+                    cursor: not-allowed;
+                }
+                &.active, &.disabled{
+                    cursor: not-allowed;
+                }
+                &.disabled{
+                    opacity: 0.5;
+                }
+                &:hover:not(.disabled){
+                    color: $vue-table-pagination-bg-colour;
+                    background-color: $vue-table-pagination-colour;
+                }
+            }
+        }
+    }
+}

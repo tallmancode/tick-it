@@ -7,7 +7,7 @@
 // Color Variables
 // Bootstrap Color Overrides
 $primary: #4dc5f4;
-$grey-border-color: #8e8e8e;
+
 $white: #fff !default;
 $gray-100: #f8f9fc !default;
 $gray-200: #eaecf4 !default;
@@ -19,6 +19,7 @@ $gray-700: #6e707e !default;
 $gray-800: #5a5c69 !default;
 $gray-900: #3a3b45 !default;
 $black: #000 !default;
+$grey-border-color: $gray-600;
 
 $blue: #4e73df !default;
 $indigo: #6610f2 !default;

@@ -30,7 +30,6 @@ class AppController extends AbstractController
 
     public function backend() : Response
     {
-
         //redirect user to backend if not authenticated
         if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirect($this->generateUrl('frontend-base'));
