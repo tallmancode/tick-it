@@ -1,7 +1,7 @@
 export default {
     namespaced: true,
     state: {
-        loading: true,
+        loading: false,
         requestsPending: 0,
     },
     actions: {

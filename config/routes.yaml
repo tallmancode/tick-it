@@ -7,10 +7,10 @@ frontend:
     controller: App\Controller\AppController::frontend
     methods: GET|HEAD
     requirements:
-        path: login
+        path: login|interests
 backend:
     path: /{path}
     controller: App\Controller\AppController::backend
     methods: GET|HEAD
     requirements:
-        path: "^(?!login).+"
+        path: "^(?!login|api).+"

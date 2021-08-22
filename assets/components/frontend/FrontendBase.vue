@@ -6,6 +6,7 @@
                 <component :is="Component"/>
             </transition>
         </router-view>
+        <LoadingDots v-if="loading"></LoadingDots>
     </main>
     <Footer></Footer>
 </template>
@@ -13,9 +14,14 @@
 <script>
 import Header from "./components/global/header/Header";
 import Footer from "./components/global/footer/Footer";
+import LoadingDots from "./components/global/loading-indicators/dots/LoadingDots";
+import { mapState } from "vuex";
 export default {
     name: "FrontendBase",
-    components: { Header, Footer }
+    components: { Header, Footer, LoadingDots },
+    computed: {
+        ...mapState('Loader', ['loading'])
+    }
 }
 </script>
 
@@ -24,10 +30,11 @@ export default {
     max-width: 960px;
 }
 main{
-    min-height: calc(100vh - (55px + 288px));
+    min-height: calc(100vh - (55px + 325px));
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
+    position: relative;
 }
 .flex-equal > * {
     flex: 1;
@@ -37,4 +44,5 @@ main{
         flex: 1;
     }
 }
+
 </style>
