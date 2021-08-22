@@ -7,6 +7,7 @@ namespace App\DataPersisters;
 use ApiPlatform\Core\DataPersister\ContextAwareDataPersisterInterface;
 use App\Entity\Coupons\Coupon;
 use App\Entity\Enrichments\Enrichment;
+use App\Entity\Tickets\Reply;
 use App\Entity\Tickets\Ticket;
 use App\Entity\Tickets\TicketStatus;
 use App\Service\CouponService;
@@ -14,16 +15,18 @@ use App\Service\MailService\MailService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 
-class TicketDataPersister implements ContextAwareDataPersisterInterface
+class ReplyDataPersister implements ContextAwareDataPersisterInterface
 {
     private ContextAwareDataPersisterInterface $decorated;
     private EntityManagerInterface $entityManager;
+    private MailService $mailService;
     private TokenGeneratorInterface $tokenGenerator;
 
-    public function __construct(ContextAwareDataPersisterInterface $decorated, EntityManagerInterface $entityManager, TokenGeneratorInterface $tokenGenerator)
+    public function __construct(ContextAwareDataPersisterInterface $decorated, EntityManagerInterface $entityManager, MailService $mailService, TokenGeneratorInterface $tokenGenerator)
     {
         $this->decorated = $decorated;
         $this->entityManager = $entityManager;
+        $this->mailService = $mailService;
         $this->tokenGenerator = $tokenGenerator;
     }
 
@@ -34,14 +37,10 @@ class TicketDataPersister implements ContextAwareDataPersisterInterface
 
     public function persist($data, array $context = [])
     {
-        if ($data instanceof Ticket && (($context['collection_operation_name'] ?? null) === 'post')) {
-            if($data->getTicketStatus() === null || $data->getTicketStatus() === ''){
-                $ticketStatus = $this->entityManager->getRepository(TicketStatus::class)->findOneBy(['name' => 'new']);
-                $data->setTicketStatus($ticketStatus);
-            }
-
+        if ($data instanceof Reply && (($context['collection_operation_name'] ?? null) === 'post')) {
             $token = $this->tokenGenerator->generateToken();
-            $data->setToken($token);
+            $this->mailService->sendEmail('test@test.com','test', 'mail/support_mail.html.twig', ['reply'=> $data, 'token' => $token]);
+           dump($data);
         }
         return $this->decorated->persist($data, $context);
     }

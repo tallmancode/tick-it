@@ -26,6 +26,12 @@ services:
     # please note that last definitions always *replace* previous ones
     App\DataPersisters\TicketDataPersister:
         decorates: 'api_platform.doctrine.orm.data_persister'
+    App\DataPersisters\ReplyDataPersister:
+            decorates: 'api_platform.doctrine.orm.data_persister'
     app.manipulator:
         class: 'App\Service\ManipulatorService\Manipulator'
         arguments: ['@validator', '@slugger']
+
+    App\EntityListener\ReplyListener:
+        tags:
+            - { name: doctrine.orm.entity_listener }

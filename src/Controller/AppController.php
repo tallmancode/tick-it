@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Tickets\Ticket;
+use App\Repository\Tickets\TicketRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -39,6 +41,15 @@ class AppController extends AbstractController
         return $this->render('backend/backendBase.html.twig', [
             'controller_name' => 'AppController',
             'user' => $this->getUser()
+        ]);
+    }
+
+    public function checkStatus($token){
+        $ticket = $this->getDoctrine()->getRepository(Ticket::class)->findOneBy(['token' => $token]);
+        dump($ticket);
+        return $this->render('tickets/status.html.twig', [
+            'controller_name' => 'AppController',
+            'ticket' => $ticket
         ]);
     }
 }

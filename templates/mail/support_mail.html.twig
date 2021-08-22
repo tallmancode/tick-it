@@ -1,0 +1,13 @@
+{# @var referral \App\Entity\Tickets\Reply #}
+<div style="width: 100%">
+    <div style="width: 600px; margin: 0 auto">
+
+        <p>Hi {{ reply.customer.name }}!</p>
+
+        <p>{{ reply.message }}</p>
+
+        <p>Click <a href="{{ app.request.schemeAndHttpHost ~ app.request.baseUrl }}/check-ticket/{{ token }}">here to track your status</a></p>
+
+        <p><b>Thanks from the Tick It Team</b></p>
+    </div>
+</div>

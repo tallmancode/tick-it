@@ -9,6 +9,11 @@ frontend:
     requirements:
         path: login|interests|"^(?!public).+"
 
+statusCheck:
+    path: /check-ticket/{token}
+    controller: App\Controller\AppController::checkStatus
+    methods: GET|HEAD
+
 backend:
     path: /{path}
     controller: App\Controller\AppController::backend

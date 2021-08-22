@@ -2,6 +2,7 @@
 
 namespace App\Entity\Tickets;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Entity\Customers\Customer;
 use App\Entity\Users\user;
 use App\Repository\Tickets\ReplyRepository;
@@ -9,9 +10,14 @@ use App\Traits\BlamableTrait;
 use App\Traits\TimestampTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ReplyRepository::class)
+ * @ApiResource (
+ *      normalizationContext={"groups"={"reply:read"}},
+ *     denormalizationContext={"groups"={"reply:write"}},
+ * )
  */
 class Reply
 {
@@ -26,11 +32,13 @@ class Reply
     /**
      * @ORM\ManyToOne(targetEntity=Ticket::class, inversedBy="replies")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups ({"reply:read", "reply:write"})
      */
     private $ticket;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups ({"reply:read", "reply:write"})
      */
     private $message;
 
@@ -44,6 +52,7 @@ class Reply
     /**
      * @ORM\ManyToOne(targetEntity=Customer::class, inversedBy="replies")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups ({"reply:read", "reply:write"})
      */
     private $customer;
 

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{%- block head -%}
+
+{% endblock %}
+{%- block css -%}
+    {{ encore_entry_link_tags('styles') }}
+    {{ encore_entry_link_tags('frontend') }}
+{%- endblock css -%}
+
+{% block body %}
+    <body>
+    <div class="status-page">
+        <div class="header">
+            {% if ticket.ticketStatus.name == 'close' %}
+            <div class="h3 bg-danger text-light text-center py-5">
+                Current Ticket Status  {{ ticket.ticketStatus.name }}
+            </div>
+            {% else %}
+            <div class="h3 bg-light text-center py-5">
+                Current Ticket Status  {{ ticket.ticketStatus.name }}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {%- block javascriptAppended -%}{%- endblock javascriptAppended -%}
+    </body>
+{% endblock %}
