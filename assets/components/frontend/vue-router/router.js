@@ -4,6 +4,8 @@ import Login from "../components/login/Login";
 
 import ComplexQueries from "../components/complex-queries/ComplexQueries";
 
+import FileManipulation from "../components/file-manipulation/FileManipulation";
+
 const router = createRouter({
     linkActiveClass: 'active',
     history: createWebHistory(),
@@ -14,6 +16,7 @@ const router = createRouter({
         { path: '/', component: Home, name: 'Home' },
         { path: '/login', component: Login, name: 'Login' },
         { path: '/complex-queries', component: ComplexQueries, name: 'ComplexQueries' },
+        { path: '/file-manipulation', component: FileManipulation, name: 'FileManipulation' },
     ]
 })
 

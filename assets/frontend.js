@@ -72,5 +72,8 @@ frontend.use(VueMesa, {})
 import vfmPlugin from 'vue-final-modal'
 frontend.use(vfmPlugin)
 
+//Form Components
+frontend.component('multi-select', require('@vueform/multiselect').default)
+
 //Mount
 frontend.mount('#app')

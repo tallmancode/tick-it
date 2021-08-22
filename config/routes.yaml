@@ -7,7 +7,8 @@ frontend:
     controller: App\Controller\AppController::frontend
     methods: GET|HEAD
     requirements:
-        path: login|interests
+        path: login|interests|"^(?!public).+"
+
 backend:
     path: /{path}
     controller: App\Controller\AppController::backend

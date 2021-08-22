@@ -7,6 +7,7 @@
             <div class="nav-links">
                 <router-link class="py-2 px-2 d-none d-md-inline-block" :to="{ name: 'Home'}">Home</router-link>
                 <router-link class="py-2 px-2 d-none d-md-inline-block" :to="{ name: 'ComplexQueries'}">Complex Queries</router-link>
+                <router-link class="py-2 px-2 d-none d-md-inline-block" :to="{ name: 'FileManipulation'}">File Manipulation</router-link>
                 <router-link class="py-2 px-2 d-none d-md-inline-block" :to="{ name: 'Login'}">Login</router-link>
             </div>
         </nav>
