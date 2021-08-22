@@ -4,6 +4,7 @@
             <DataSeeder v-if="people.length === 0" @seeded="getPeople"/>
             <QueriesViewer v-if="people.length > 0"/>
             <div v-if="people.length > 0" class="col-12 border-top pt-4">
+                <h5 class="text-center mb-4">All Personal Details</h5>
                 <vue-mesa :ref="'people_table'"
                           :apiUrl="'/api/personal_details'"
                           :dataPath="'data.data'"
@@ -28,6 +29,7 @@
 import DataSeeder from "./components/data-seeder/DataSeeder";
 import QueriesViewer from "./components/queries/QueriesViewer";
 import ClearDataModal from "./components/data-seeder/ClearDataModal";
+import ErrorModal from "../global/modals/ErrorModal";
 export default {
     name: "ComplexQueries",
     components: { DataSeeder, QueriesViewer },
@@ -53,6 +55,9 @@ export default {
                     console.log(resp)
                     this.people = resp.data.data
                 })
+            .catch((err) => {
+                this.$vfm.show({component: ErrorModal})
+            })
         }
     }
 }

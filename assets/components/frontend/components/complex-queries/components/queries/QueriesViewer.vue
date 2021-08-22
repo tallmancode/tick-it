@@ -1,7 +1,7 @@
 <template>
     <div class="col-12">
         <div class="row">
-            <div class="col-12 mb-4">
+            <div class="col-12 mb-4 d-flex justify-content-center">
                 <button class="btn btn-primary me-3" @click="getAnimalLovers">Animal Lovers</button>
                 <button class="btn btn-secondary me-3" @click="getSportsAndChildren">Children & Sport Lovers</button>
                 <button class="btn btn-info me-3" @click="getUniqueInterests">Unique Interests & No Docs</button>
