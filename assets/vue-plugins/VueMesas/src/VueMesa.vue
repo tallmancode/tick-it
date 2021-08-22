@@ -4,7 +4,10 @@
                          :filterOptions="filters"
                          @vuetable-filters:change-filter="changeFilter">
         </VueTableFilters>
-        <slot name="tableActions"></slot>
+        <div class="table-header-row" v-if="this.$slots.headerRow">
+            <slot name="headerRow"></slot>
+        </div>
+
         <table ref="vuetable" class="table">
             <thead>
             <slot :fields="tableFields" name="tableHeader">

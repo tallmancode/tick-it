@@ -26,6 +26,23 @@ class InterestFaker extends Base
         ['category' => 'Software Development', 'name' => 'Quidditch'],
         ['category' => 'Software Development', 'name' => 'Yoda'],
         ['category' => 'Software Development', 'name' => 'Unicorns'],
+        ['category' => 'Exercise', 'name' => 'Collecting Navel Fluff'],
+        ['category' => 'Travel', 'name' => 'Collecting In-Flight Sick Bags'],
+        ['category' => 'Exercise', 'name' => 'Faking your own death'],
+        ['category' => 'Parenting', 'name' => 'Milk bottle collecting'],
+        ['category' => 'Not Exercise', 'name' => 'Trainspotting'],
+        ['category' => 'Travel', 'name' => 'Extreme ironing'],
+        ['category' => 'Exercise', 'name' => 'Competitive Duck Herding'],
+        ['category' => 'Adventure', 'name' => 'Survivalist Prepping'],
+        ['category' => 'Adventure', 'name' => 'Lockpicking'],
+        ['category' => 'Exercise', 'name' => 'Whittling'],
+        ['category' => 'Parenting', 'name' => 'Chainsaw Carving'],
+        ['category' => 'Lifestyle', 'name' => 'Art Of Garnishing'],
+        ['category' => 'Exercise', 'name' => 'Beatboxing'],
+        ['category' => 'Exercise', 'name' => 'Ghost Hunting'],
+        ['category' => 'Exercise', 'name' => 'Toastmasters'],
+        ['category' => 'Parenting', 'name' => 'Dumpster Diving'],
+        ['category' => 'Software Development', 'name' => 'No Sleeping'],
     ];
 
     public function all(): array

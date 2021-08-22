@@ -78,6 +78,10 @@
             }
         }
     }
+    .table-header-row{
+        display: flex;
+        justify-content: flex-end;
+    }
 }
 
 //Tables

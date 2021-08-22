@@ -17,13 +17,16 @@ class PersonalDetailsRepository extends  BaseRepo
         $this->setTable(self::TABLE);
     }
 
-    public function fetchAllWithRelations()
+    public function fetchAll()
     {
-        $people = $this->fetchAll();
-        $results = [];
-        foreach($people as $person){
-            $this->dbm->getConnection();
-            $sql = "SELECT count(id) as count FROM ".$this->table;
-        }
+        $conn = $this->dbm->getConnection();
+        $queryBuilder = $conn->createQueryBuilder();
+        $rows = $queryBuilder->select('p.id, p.first_name, p.last_name, count(distinct phi.interest_id) as interest_count, count(distinct d.id) as doc_count')
+            ->from($this->table, 'p')
+            ->leftJoin('p', 'person_has_interest ', 'phi', 'phi.person_id = p.id')
+            ->leftJoin('p', 'document ', 'd', 'd.person_id = p.id')
+            ->groupBy('p.id')
+            ->execute()->fetchAll();
+        return  $rows;
     }
 }

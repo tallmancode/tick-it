@@ -37,7 +37,7 @@ class Seeder extends Base
     {
         if ($this->dbm->tablesExist(self::TABLES)) {
             $this->setup();
-            return $this->createPeopleDetails(10);
+            return $this->createPeopleDetails(random_int(50, 100));
         }
     }
 

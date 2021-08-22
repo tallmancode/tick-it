@@ -68,5 +68,9 @@ frontend.use(store)
 import VueMesa from "./vue-plugins/VueMesas/index";
 frontend.use(VueMesa, {})
 
+//Vue final modal
+import vfmPlugin from 'vue-final-modal'
+frontend.use(vfmPlugin)
+
 //Mount
 frontend.mount('#app')

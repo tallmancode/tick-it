@@ -9,16 +9,18 @@
         <LoadingDots v-if="loading"></LoadingDots>
     </main>
     <Footer></Footer>
+    <ModalsContainer></ModalsContainer>
 </template>
 
 <script>
 import Header from "./components/global/header/Header";
 import Footer from "./components/global/footer/Footer";
 import LoadingDots from "./components/global/loading-indicators/dots/LoadingDots";
+import { ModalsContainer } from 'vue-final-modal';
 import { mapState } from "vuex";
 export default {
     name: "FrontendBase",
-    components: { Header, Footer, LoadingDots },
+    components: { Header, Footer, LoadingDots, ModalsContainer },
     computed: {
         ...mapState('Loader', ['loading'])
     }
