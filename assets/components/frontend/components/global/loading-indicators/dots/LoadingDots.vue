@@ -34,10 +34,10 @@ export default {
 //Loading indicator
 .loader{
     background-color: #FFFFFF;
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: 54px;
     left: 0;
-    height: calc(100vh - (55px + 325px));
+    height: calc(100vh - (55px + 200px));
     width: 100%;
     overflow: hidden;
     display: flex;

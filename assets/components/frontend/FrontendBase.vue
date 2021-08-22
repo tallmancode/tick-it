@@ -32,7 +32,7 @@ export default {
     max-width: 960px;
 }
 main{
-    min-height: calc(100vh - (55px + 325px));
+    min-height: calc(100vh - (55px + 200px));
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
