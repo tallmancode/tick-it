@@ -12,18 +12,15 @@ class UserFixture extends Fixture
     {
         $seedUsers = [
             [
-                'email' => 'user@user.com'
-            ],
-            [
-                'email' => 'user1@support.com',
+                'email' => 'bob@support.com',
                 'roles' => ['ROLE_SUPPORT']
             ],
             [
-                'email' => 'user2@support.com',
+                'email' => 'sue@support.com',
                 'roles' => ['ROLE_SUPPORT']
             ],
             [
-                'email' => 'user3@support.com',
+                'email' => 'randy@support.com',
                 'roles' => ['ROLE_SUPPORT']
             ]
         ];

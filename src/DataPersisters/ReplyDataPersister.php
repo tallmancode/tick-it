@@ -38,9 +38,9 @@ class ReplyDataPersister implements ContextAwareDataPersisterInterface
     public function persist($data, array $context = [])
     {
         if ($data instanceof Reply && (($context['collection_operation_name'] ?? null) === 'post')) {
-            $token = $this->tokenGenerator->generateToken();
-            $this->mailService->sendEmail('test@test.com','test', 'mail/support_mail.html.twig', ['reply'=> $data, 'token' => $token]);
-           dump($data);
+
+            $this->mailService->sendEmail('test@test.com','test', 'mail/support_mail.html.twig', ['reply'=> $data, 'token' => $data->getTicket()->getToken()]);
+
         }
         return $this->decorated->persist($data, $context);
     }

@@ -7,7 +7,11 @@ frontend:
     controller: App\Controller\AppController::frontend
     methods: GET|HEAD
     requirements:
-        path: login|interests|"^(?!public).+"
+        path: login|interests
+
+app_logout:
+    path: /logout
+    methods: GET
 
 statusCheck:
     path: /check-ticket/{token}
@@ -19,4 +23,4 @@ backend:
     controller: App\Controller\AppController::backend
     methods: GET|HEAD
     requirements:
-        path: "^(?!login|api).+"
+        path: "^(?!login|api|logout).+"

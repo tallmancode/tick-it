@@ -42,7 +42,7 @@ class InterestFaker extends Base
         ['category' => 'Exercise', 'name' => 'Ghost Hunting'],
         ['category' => 'Exercise', 'name' => 'Toastmasters'],
         ['category' => 'Parenting', 'name' => 'Dumpster Diving'],
-        ['category' => 'Software Development', 'name' => 'No Sleeping'],
+
     ];
 
     public function all(): array

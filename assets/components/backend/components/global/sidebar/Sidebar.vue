@@ -33,17 +33,11 @@
             </router-link>>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="charts.html">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>Charts</span></a>
-        </li>
-
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
         <li class="nav-item">
-            <a class="nav-link" href="charts.html">
+            <a class="nav-link" href="/logout">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Logout</span></a>
         </li>

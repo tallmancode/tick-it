@@ -11,7 +11,7 @@
     <body>
     <div class="status-page">
         <div class="header">
-            {% if ticket.ticketStatus.name == 'close' %}
+            {% if ticket.ticketStatus.name == 'resolved' %}
             <div class="h3 bg-danger text-light text-center py-5">
                 Current Ticket Status  {{ ticket.ticketStatus.name }}
             </div>
@@ -20,6 +20,14 @@
                 Current Ticket Status  {{ ticket.ticketStatus.name }}
             </div>
             {% endif %}
+        </div>
+        <div class="main">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2>Hi {{ ticket.customer.name }} your ticket status is currently {{ ticket.ticketStatus.name }}</h2>
+
+                </div>
+            </div>
         </div>
     </div>
     {%- block javascriptAppended -%}{%- endblock javascriptAppended -%}

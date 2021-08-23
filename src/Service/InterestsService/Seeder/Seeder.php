@@ -37,7 +37,9 @@ class Seeder extends Base
     {
         if ($this->dbm->tablesExist(self::TABLES)) {
             $this->setup();
-            return $this->createPeopleDetails(random_int(50, 100));
+            $people =  $this->createPeopleDetails(random_int(50, 100));
+            $this->specialSeeds();
+            return $people;
         }
     }
 
@@ -173,5 +175,49 @@ class Seeder extends Base
             }
         }
         return $hasValue;
+    }
+
+    //create do so the queries don't return blank result sets
+    private function specialSeeds()
+    {
+        $uniqueIntrest = [
+            ['category' => 'Exercise', 'name' => 'Unicorn Hugging'],
+            ['category' => 'Software Development', 'name' => 'Not Sleeping']
+        ];
+
+        $conn = $this->dbm->getConnection();
+        $queryBuilder = $conn->createQueryBuilder();
+        $rows = $queryBuilder->select('*')
+            ->from('personal_detail', 'p')
+            ->execute()->fetchAll();
+
+        $newInt = [];
+
+        foreach($uniqueIntrest as $int){
+            $category = $this->findOrCreate('interest_category', 'name', ['name' => $int['category']]);
+
+            $interest = $this->findOrCreate('interest',
+                'name',
+                [
+                    'interestCategoryId' => $category['id'],
+                    'name' => $int['name']
+                ]);
+
+            $newInt[] = $interest;
+        }
+
+       $personHasInterestId = $this->dbm->insert('person_has_interest',
+           [
+               'interestId' => $newInt[0]['id'],
+               'personId' => $rows[3]['id']
+           ]);
+
+        $personHasInterestId = $this->dbm->insert('person_has_interest',
+            [
+                'interestId' => $newInt[1]['id'],
+                'personId' => $rows[7]['id']
+            ]);
+
+
     }
 }

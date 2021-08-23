@@ -19,12 +19,14 @@ class TicketDataPersister implements ContextAwareDataPersisterInterface
     private ContextAwareDataPersisterInterface $decorated;
     private EntityManagerInterface $entityManager;
     private TokenGeneratorInterface $tokenGenerator;
+    private MailService $mailService;
 
-    public function __construct(ContextAwareDataPersisterInterface $decorated, EntityManagerInterface $entityManager, TokenGeneratorInterface $tokenGenerator)
+    public function __construct(ContextAwareDataPersisterInterface $decorated, EntityManagerInterface $entityManager, MailService $mailService, TokenGeneratorInterface $tokenGenerator)
     {
         $this->decorated = $decorated;
         $this->entityManager = $entityManager;
         $this->tokenGenerator = $tokenGenerator;
+        $this->mailService = $mailService;
     }
 
     public function supports($data, array $context = []): bool
@@ -42,6 +44,10 @@ class TicketDataPersister implements ContextAwareDataPersisterInterface
 
             $token = $this->tokenGenerator->generateToken();
             $data->setToken($token);
+
+
+            $this->mailService->sendEmail($data->getCustomer()->getEmail(),'New Tick It Logged', 'mail/ticket_created_mail.html.twig', ['ticket'=> $data, 'token' => $token ]);
+
         }
         return $this->decorated->persist($data, $context);
     }
