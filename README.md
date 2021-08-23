@@ -24,3 +24,11 @@ Setup the database.
 
 5. Build vue files run
    `npm run dev`
+
+Default Users Are.
+
+bob@support.com - password
+
+sue@support.com - password
+
+randy@support.com - password
