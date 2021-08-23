@@ -128,12 +128,11 @@ WHERE phi.person_id  IN
     (
         SELECT d.person_id
         FROM document d
-		where d.person_id = 3
         GROUP BY d.interest_id, d.person_id
         HAVING COUNT(distinct d.id) > 1
     ) AS subquery
 )
-group by phi.person_id
+group by phi.person_id 
 having count(distinct phi.id) >= 5 and count(distinct phi.id) <= 6";
 
         $results = $this->dbm->runQuery($query);
